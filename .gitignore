@@ -1,0 +1,35 @@
+.DS_Store
+node_modules
+/dist
+
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# Editor directories and files
+.idea
+.vscode/*
+!.vscode/launch.json
+!.vscode/.editorconfig
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.env.development
+.env.production
+.env
+.env.template
+
+coverage
+junit.xml
+tmp
