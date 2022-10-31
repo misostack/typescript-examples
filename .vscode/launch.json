@@ -10,10 +10,10 @@
       "name": "Debug file",
       "runtimeExecutable": "node",
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only"],
-      "args": ["${fileDirname}/${fileBasename}"],      
+      "args": ["${fileDirname}/${fileBasename}"],
       "cwd": "${workspaceRoot}",
       "internalConsoleOptions": "openOnSessionStart",
-      "skipFiles": ["<node_internals>/**", "node_modules/**"]      
+      "skipFiles": ["<node_internals>/**", "node_modules/**"]
     },
     {
       "type": "node",
@@ -31,16 +31,16 @@
       "protocol": "inspector",
       "cwd": "${workspaceRoot}",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": [ "dev"]
+      "runtimeArgs": ["dev"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest: current file",
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+      "args": ["${fileBasenameNoExtension}", "--config", "jest.config.ts"],
+      "console": "integratedTerminal"
     }
-    // {
-    //   "name": "NodeJS Attach Debug",
-    //   "port": 9229,
-    //   "request": "attach",
-    //   "skipFiles": [
-    //     "<node_internals>/**"
-    //   ],
-    //   "type": "pwa-node"
-    // },
   ]
 }
