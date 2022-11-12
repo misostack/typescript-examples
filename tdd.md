@@ -220,3 +220,168 @@ public void testSum() {
     assertEquals(7, plus(3,4));
 }
 ```
+
+## Testing Concepts
+
+### Unit Testing
+
+- Unit testing is a testable piece of software.
+- In other words, it is a function or method, which invokes a unit of module in software and check assumptions about the system that the developer has in mind.
+- It can have more than one input and normally a single output. Sometimes, we treat a module of a system as a unit.
+- A unit test is applicable to test a logical piece of code. Eg: getting and setting values in text field will not be considered in logical code.
+
+Your concerns before writing the initial unit test:
+
+1. Use a test framework or write your own
+2. Automated build process
+3. Collecting, displaying and tracking unit test coverage
+
+Testing frameworks provide a lot of the ready-made piece of code, includes:
+
+1. Test suite/case aggregation
+2. Assertions
+3. Mock/Stub helpers
+4. Asynchronous testing implementation
+5. And more ...
+
+### Assertions
+
+1. Equity assertions
+2. Sameness assertions
+3. Datatype assertions
+4. Special value assertions
+5. Forced failures
+
+```js
+class Example {
+  constructor(private title: string) {
+    this.title = title;
+  }
+}
+// Ref : https://stackoverflow.com/questions/62564800/how-to-assert-data-type-with-jest
+describe('Assertions', () => {
+  beforeAll(() => {});
+  // Equity assertions: 1 == '1'
+  describe('Sameness assertions', () => {
+    const objectA = { a: 1, b: { c: 2 } };
+    const objectB = { a: 1, b: { c: 2.0 } };
+
+    beforeAll(() => {});
+    it('a should equal b', () => {
+      expect(objectA).toEqual(objectB);
+    });
+    it('a should equal b', () => {
+      expect(objectA).toStrictEqual(objectB);
+    });
+  });
+  describe('Datatype assertions', () => {
+    it('should be a number', () => {
+      const a = 1;
+      expect(typeof a).toBe('number');
+    });
+    it('should be an instance of Example', () => {
+      const example = new Example('Example');
+      expect(example).toBeInstanceOf(Example);
+    });
+  });
+  describe('Special value assertions', () => {
+    it('false should be false', () => {
+      const a = false;
+      expect(a).toBeFalsy();
+    });
+    it('null should be false', () => {
+      const b = null;
+      expect(b).toBeFalsy();
+    });
+    it('undefined should be false', () => {
+      const c = undefined;
+      expect(c).toBeFalsy();
+    });
+  });
+});
+
+```
+
+### Benefit of Unit Testing
+
+1. Quickly making big changes
+2. Boost your confident
+3. Helps to understand system design
+4. Green lightning development
+5. Faster development
+6. Easy debugging
+7. Reusable code
+8. Saving cost
+
+### Pitfalls of unit testing
+
+1. Wrong assumptions for unit testing: it is not a tool, it is a methodology/technique.
+2. Not suitable for a tight deadlines
+
+### Unit Testing Frameworks
+
+1. JestJS : support jsdom, BDD style
+2. Jasmine: BDD style
+3. Mocha(Testing Framework) & Chai(Assertion Libs):
+
+![BDD vs TDD](./images/tdd-vs-bdd.png)
+
+## Glossary
+
+1. Red
+2. Green
+3. Refactor
+4. Fixture
+5. Test suite
+6. Test case
+7. Assertion
+8. Mock
+9. Stub
+10. Asynchronous
+11. setUp
+12. tearDown
+13. Test double
+14. Fake
+15. Dummy
+16. Spy
+17. Regular Tests
+
+### Mock
+
+Mocks are lines of code with some hardcoded behavior and some expectations that
+we have achieved from the requirement understanding phase. A mock will fail test,
+if it is not defined as per expectation.
+
+```ts
+describe('Mock example', () => {
+  describe('Mock a method of class', () => {
+    const exampleGoMock = jest
+      .spyOn(Example.prototype, 'go')
+      .mockImplementation(() => {
+        // become stub
+        return 1;
+      });
+    it('test go function', () => {
+      const example = new Example('test');
+      example.go();
+
+      expect(exampleGoMock).toBeCalledTimes(1);
+      expect(exampleGoMock.mock.results[0].value).toEqual(1);
+    });
+  });
+});
+```
+
+### Stubs
+
+Similar to mocks, stubs are normally used to replace actual implementation of
+any code. Stubs can be used to execute our implementation in one particular way.
+We can see how custom code responds for different inputs.
+
+> Mocks are used to verify the behavior of our code. Stubs are used to provide data that our code needs to run
+
+## References
+
+- https://www.educative.io/answers/what-is-faking-vs-mocking-vs-stubbing
+- https://martinfowler.com/articles/mocksArentStubs.html
+- https://www.toolsqa.com/blogs/differences-between-stubbing-and-mocking/
