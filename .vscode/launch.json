@@ -30,7 +30,7 @@
       "name": "Debug",
       "protocol": "inspector",
       "cwd": "${workspaceRoot}",
-      "runtimeExecutable": "yarn",
+      "runtimeExecutable": "npm",
       "runtimeArgs": ["dev"]
     },
     {

@@ -63,3 +63,4 @@ export class CustomAdapter implements Adapter {
     // await this.connection.query('DELETE FROM policies WHERE ...');
   }
 }
+
